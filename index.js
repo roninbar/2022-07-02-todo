@@ -8,6 +8,27 @@ function ToDoItem({ what, when, who, completed }) {
 document.addEventListener('DOMContentLoaded', function () {
 
     /**
+     * Add a row to the table.
+     * @param {ToDoItem} item To do item
+     */
+    function addTableRow(item) {
+        const tr = document.createElement('tr');
+        tr.innerHTML = /*html*/ `
+            <td>${item.what}</td>
+            <td>${item.when}</td>
+            <td>${item.who}</td>
+            <td><input type="checkbox"></td>`;
+        /**
+         * @type HTMLInputElement
+         */
+        const checkbox = tr.querySelector('input[type=checkbox]');
+        checkbox.addEventListener('change', function () {
+            tr.classList[this.checked ? 'add' : 'remove']('completed');
+        });
+        document.querySelector('tbody').appendChild(tr);
+    }
+
+    /**
      * @type HTMLInputElement
      */
     const inputWhat = document.getElementById('what');
@@ -31,19 +52,8 @@ document.addEventListener('DOMContentLoaded', function () {
         });
         inputWhat.value = inputWhen.value = inputWho.value = '';
         inputWhat.focus();
-        const tr = document.createElement('tr');
-        tr.innerHTML = /*html*/ `
-            <td>${item.what}</td>
-            <td>${item.when}</td>
-            <td>${item.who}</td>
-            <td><input type="checkbox"></td>`;
-        /**
-         * @type HTMLInputElement
-         */
-        const checkbox = tr.querySelector('input[type=checkbox]');
-        checkbox.addEventListener('change', function () {
-            tr.classList[this.checked ? 'add' : 'remove']('completed');
-        });
-        document.querySelector('tbody').appendChild(tr);
+        addTableRow(item);
     });
 });
+
+
