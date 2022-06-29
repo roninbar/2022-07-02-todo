@@ -11,10 +11,12 @@ document.addEventListener('DOMContentLoaded', function () {
      * @type HTMLInputElement
      */
     const inputWhat = document.getElementById('what');
+
     /**
      * @type HTMLInputElement
      */
     const inputWhen = document.getElementById('when');
+
     /**
      * @type HTMLInputElement
      */
@@ -22,11 +24,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.querySelector('form').addEventListener('submit', function (ev) {
         ev.preventDefault();
-        const item = new ToDoItem({ what: inputWhat.value, when: inputWhen.value, who: inputWho.value });
+        const item = new ToDoItem({
+            what: inputWhat.value,
+            when: inputWhen.value,
+            who: inputWho.value,
+        });
         inputWhat.value = inputWhen.value = inputWho.value = '';
         inputWhat.focus();
         const tr = document.createElement('tr');
-        tr.innerHTML = /*html*/`
+        tr.innerHTML = /*html*/ `
             <td>${item.what}</td>
             <td>${item.when}</td>
             <td>${item.who}</td>
