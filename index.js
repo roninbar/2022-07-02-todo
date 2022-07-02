@@ -28,6 +28,16 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelector('tbody').appendChild(tr);
     }
 
+    // #region Restore the list from local storage.
+    const itemsJson = localStorage.getItem('todo');
+    /**
+     * @type [{ what: string, when: string, who: string, completed: bool }]
+     */
+    const itemsPojos = itemsJson ? JSON.parse(itemsJson) : [];
+    const items = itemsPojos.map((pojo) => new ToDoItem(pojo));
+    items.forEach(addTableRow)
+    // #endregion
+
     /**
      * @type HTMLInputElement
      */
@@ -53,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
         inputWhat.value = inputWhen.value = inputWho.value = '';
         inputWhat.focus();
         addTableRow(item);
+        items.push(item);
+        localStorage.setItem('todo', JSON.stringify(items));
     });
 });
-
-
