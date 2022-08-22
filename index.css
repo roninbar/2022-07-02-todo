@@ -1,7 +1,13 @@
 body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+main {
+    margin: 0 auto;
+    max-width: 800px;
     display: flex;
     flex-direction: column;
+    align-items: center;
     row-gap: 2rem;
 }
 
@@ -15,6 +21,10 @@ form {
 form>div {
     display: flex;
     justify-content: space-between;
+}
+
+table {
+    align-self: stretch;
 }
 
 table, th, td {

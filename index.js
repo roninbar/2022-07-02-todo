@@ -6,7 +6,6 @@ function ToDoItem({ what, when, who, completed }) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-
     /**
      * Add a row to the table.
      * @param {ToDoItem} item To do item
@@ -35,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
      */
     const itemsPojos = itemsJson ? JSON.parse(itemsJson) : [];
     const items = itemsPojos.map((pojo) => new ToDoItem(pojo));
-    items.forEach(addTableRow)
+    items.forEach(addTableRow);
     // #endregion
 
     /**
@@ -54,6 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const inputWho = document.getElementById('who');
 
     document.querySelector('form').addEventListener('submit', function (ev) {
+        // console.debug(item, itemsPojos, itemsJson);
         ev.preventDefault();
         const item = new ToDoItem({
             what: inputWhat.value,
